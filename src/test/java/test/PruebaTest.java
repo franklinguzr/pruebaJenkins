@@ -1,14 +1,14 @@
-package co.edu.udea.basededatos.util.test;
+package test;
 
-import org.testng.annotations.Test;
+import junit.framework.TestCase;
+import org.junit.Test;
 
-import static org.testng.AssertJUnit.assertEquals;
 
 /*
  * Estas pruebas son solamente pruebas
  * para probar las implementaciones
  */
-public class PruebaTest {
+public class PruebaTest extends TestCase {
     @Test
     public void testNumeroMayor() {
         int a = 5;
@@ -23,7 +23,7 @@ public class PruebaTest {
     public void testNumeroMenor1() {
         int a = 5;
         int b = 7;
-        int expResult = 7;
+        int expResult = 5;
         int result =  a>b ? b : a ;
         assertEquals(expResult, result);
     }
