@@ -1,0 +1,72 @@
+pipeline {
+  agent any
+
+  tools {
+    jdk "java"
+  }
+
+  parameters {
+    string(name: 'container_name', defaultValue: 'pagina_web', description: 'contenedor.')
+    string(name: 'image_name', defaultValue: 'pagina_img', description: 'Nombre de la imagen.')
+    string(name: 'tag_image', defaultValue: 'lts', description: 'Tag de la imagen de la página.')
+    string(name: 'container_port', defaultValue: '80', description: 'Puerto que usa el contenedor')
+  }
+
+
+    stage('clone - validate') {
+      steps {
+        git branch: 'master', url: 'https://github.com/franklinguzr/pruebaJenkins.git'
+        dir('/') {
+          sh 'mvn validate'
+        }
+      }
+    }
+
+    stage('compile') {
+      steps {
+        dir('/') {
+          sh 'mvn compile'
+        }
+      }
+    }
+
+    stage('test') {
+      steps {
+        dir('/') {
+          sh 'mvn test'
+        }
+      }
+    }
+
+    stage('package') {
+      steps {
+        dir('/') {
+          sh 'mvn package'
+        }
+      }
+    }
+
+    stage('verify') {
+      steps {
+        dir('/') {
+          sh 'mvn verify'
+        }
+      }
+    }
+
+
+    stage('install') {
+      steps {
+        dir('/') {
+          sh 'mvn install'
+        }
+      }
+    }
+    stage('deploy') {
+      steps {
+        sh 'mvn deploy'
+      }
+    }
+  
+
+}
