@@ -9,6 +9,7 @@ pipeline {
   stages{
     stage('clone - validate') {
       steps {
+        sh 'cd C:\ProgramData\Jenkins\.jenkins\workspace\Ejemplo'
         git branch: 'master', url: 'https://github.com/franklinguzr/pruebaJenkins.git'
         sh 'mvn validate'
       }
