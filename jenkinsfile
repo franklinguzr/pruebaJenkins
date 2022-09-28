@@ -9,33 +9,27 @@ pipeline {
     stage('clone - validate') {
       steps {
         git branch: 'master', url: 'https://github.com/franklinguzr/pruebaJenkins.git'
-        dir('/') {
-          sh 'mvn validate'
-        }
+        sh 'mvn validate'
       }
     }
 
     stage('compile') {
       steps {
-        dir('/') {
-          sh 'mvn compile'
-        }
+         sh 'mvn compile'
       }
     }
 
     stage('test') {
       steps {
-        dir('/') {
-          sh 'mvn test'
-        }
+        sh 'mvn test'
       }
     }
 
     stage('package') {
       steps {
-        dir('/') {
-          sh 'mvn package'
-        }
+
+        sh 'mvn package'
+        
       }
     }
 
