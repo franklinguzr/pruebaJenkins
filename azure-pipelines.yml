@@ -6,7 +6,7 @@
 trigger:
 - master
 
-pool: default
+pool: DESKTOP-OHOFCDP
 
 steps:
 - task: Maven@3
